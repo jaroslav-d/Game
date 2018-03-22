@@ -33,7 +33,7 @@ Axes.YLim = [0,26];
 Axes.Color = [0,0,0];
 Axes.XColor = [0,0,0];
 Axes.YColor = [0,0,0];
-Figure.WindowKeyPressFcn = @myfun;
+Figure.WindowKeyPressFcn = {@myfun,CurrentCharacter};
 
 %%
 DW = DialogWindow(Figure.Position,1);
@@ -64,17 +64,17 @@ end;
 Field.CData(randi([1 25]),randi([1 25])) = Apple;
 
 
-Figure.CurrentCharacter = '8';
-PrevButton = ignore('8');
+CurrentCharacter = 'numpad8';
+PrevButton = ignore('numpad8');
 pause(2)
 Delay = 0;
 ii = '';
 while ~strcmp('game over',ii)
 %     disp(strcat('ZTick',Figure.Children.ZTickLabel))
     pause(0.2-Delay)
-    if strcmpi(Figure.CurrentCharacter,'p')
+    if strcmpi(CurrentCharacter,'p')
         DW = DialogWindow(Figure.Position,2);
-        Figure.CurrentCharacter = '0';
+        CurrentCharacter = '0';
         if strcmp(DW.CloseGame,'close')
             close(Figure);
             break;
@@ -92,23 +92,23 @@ while ~strcmp('game over',ii)
 %     disp(strcat('ZTick',Figure.Children.ZTickLabel))
     vectorX = Snake.Coordinate(1,2)-Snake.Coordinate(1,3);
     vectorY = Snake.Coordinate(2,2)-Snake.Coordinate(2,3);
-    NextButton = Figure.CurrentCharacter;
+    NextButton = CurrentCharacter;
 %     disp(NextButton)
     if strcmp(NextButton,PrevButton)
         NextButton = '0';
     end;
 %     disp(NextButton)
     switch NextButton
-        case '8'
+        case 'numpad8'
             Snake.Coordinate(2,1) = Snake.Coordinate(2,1) + 1;
 %             disp('8')
-        case '6'
+        case 'numpad6'
             Snake.Coordinate(1,1) = Snake.Coordinate(1,1) + 1;
 %             disp('6')
-        case '2'
+        case 'numpad2'
             Snake.Coordinate(2,1) = Snake.Coordinate(2,1) - 1;
 %             disp('2')
-        case '4'
+        case 'numpad4'
             Snake.Coordinate(1,1) = Snake.Coordinate(1,1) - 1;
 %             disp('4')
         otherwise

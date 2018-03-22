@@ -1,17 +1,17 @@
 function output = ignore(input)
 if ischar(input)
         switch input
-            case '8'
-                output = '2';
+            case 'numpad8'
+                output = 'numpad2';
                 return;
-            case '6'
-                output = '4';
+            case 'numpad6'
+                output = 'numpad4';
                 return;
-            case '2'
-                output = '8';
+            case 'numpad2'
+                output = 'numpad8';
                 return;
-            case '4'
-                output = '6';
+            case 'numpad4'
+                output = 'numpad6';
                 return;
             otherwise
                 output = input;
