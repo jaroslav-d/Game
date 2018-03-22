@@ -33,7 +33,7 @@ Axes.YLim = [0,26];
 Axes.Color = [0,0,0];
 Axes.XColor = [0,0,0];
 Axes.YColor = [0,0,0];
-Figure.WindowKeyPressFcn = {@myfun,CurrentCharacter};
+Figure.WindowKeyPressFcn = @myfun;
 
 %%
 DW = DialogWindow(Figure.Position,1);
@@ -64,7 +64,7 @@ end;
 Field.CData(randi([1 25]),randi([1 25])) = Apple;
 
 
-CurrentCharacter = 'numpad8';
+Figure.Children.XTickLabel = 'numpad8';
 PrevButton = ignore('numpad8');
 pause(2)
 Delay = 0;
@@ -72,9 +72,9 @@ ii = '';
 while ~strcmp('game over',ii)
 %     disp(strcat('ZTick',Figure.Children.ZTickLabel))
     pause(0.2-Delay)
-    if strcmpi(CurrentCharacter,'p')
+    if strcmpi(Figure.Children.XTickLabel,'p')
         DW = DialogWindow(Figure.Position,2);
-        CurrentCharacter = '0';
+        Figure.Children.XTickLabel = '0';
         if strcmp(DW.CloseGame,'close')
             close(Figure);
             break;
@@ -92,7 +92,7 @@ while ~strcmp('game over',ii)
 %     disp(strcat('ZTick',Figure.Children.ZTickLabel))
     vectorX = Snake.Coordinate(1,2)-Snake.Coordinate(1,3);
     vectorY = Snake.Coordinate(2,2)-Snake.Coordinate(2,3);
-    NextButton = CurrentCharacter;
+    NextButton = Figure.Children.XTickLabel;
 %     disp(NextButton)
     if strcmp(NextButton,PrevButton)
         NextButton = '0';

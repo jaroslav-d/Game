@@ -1,3 +1,3 @@
 function myfun(hObject,callbackdata)
-% hObject.CurrentCharacter = callbackdata.Key;
+hObject.Children.XTickLabel = callbackdata.Key;
 end
