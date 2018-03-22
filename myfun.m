@@ -1,3 +1,3 @@
 function myfun(hObject,callbackdata)
-hObject.Children.XTickLabel = callbackdata.Key;
+hObject.Tag = callbackdata.Key;
 end
