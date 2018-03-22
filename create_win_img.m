@@ -34,6 +34,10 @@ Axes.Color = [0,0,0];
 Axes.XColor = [0,0,0];
 Axes.YColor = [0,0,0];
 Figure.WindowKeyPressFcn = @myfun;
+Figure.Children.XTickLabel = 'numpad8';
+Flag = '';
+Callback = @(~) Figure.Children.XTickLabel;
+StopCall = @stopcall;
 
 %%
 DW = DialogWindow(Figure.Position,1);
@@ -64,7 +68,6 @@ end;
 Field.CData(randi([1 25]),randi([1 25])) = Apple;
 
 
-Figure.Children.XTickLabel = 'numpad8';
 PrevButton = ignore('numpad8');
 pause(2)
 Delay = 0;
@@ -72,16 +75,16 @@ ii = '';
 while ~strcmp('game over',ii)
 %     disp(strcat('ZTick',Figure.Children.ZTickLabel))
     pause(0.2-Delay)
-    if strcmpi(Figure.Children.XTickLabel,'p')
+    tic
+    if strcmpi(Callback(),'p') && ~strcmp(StopCall(Flag,Callback()),'p')
         DW = DialogWindow(Figure.Position,2);
-        Figure.Children.XTickLabel = '0';
+        Flag = 'p';
         if strcmp(DW.CloseGame,'close')
             close(Figure);
             break;
         end;
     end;
 %     disp(strcat('ZTick',Figure.Children.ZTickLabel))
-    tic
     PointOX = Snake.Coordinate(1,Snake.LenBody);
     PointOY = Snake.Coordinate(2,Snake.LenBody);
 %     disp(strcat('ZTick',Figure.Children.ZTickLabel))
@@ -92,7 +95,7 @@ while ~strcmp('game over',ii)
 %     disp(strcat('ZTick',Figure.Children.ZTickLabel))
     vectorX = Snake.Coordinate(1,2)-Snake.Coordinate(1,3);
     vectorY = Snake.Coordinate(2,2)-Snake.Coordinate(2,3);
-    NextButton = Figure.Children.XTickLabel;
+    NextButton = Callback();
 %     disp(NextButton)
     if strcmp(NextButton,PrevButton)
         NextButton = '0';

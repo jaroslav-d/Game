@@ -4,5 +4,5 @@ Figure.WindowKeyPressFcn = @pushbutton_callback;
 end
 function pushbutton_callback(hObject,x)
 pause(0.1)
-y = x.Key;
+hObject.y = x.Key;
 end
