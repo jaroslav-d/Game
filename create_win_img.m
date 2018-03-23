@@ -64,8 +64,8 @@ end;
 Field.CData(randi([1 25]),randi([1 25])) = Apple;
 
 
-Figure.Tag = 'numpad8';
-PrevButton = ignore('numpad8');
+Figure.Tag = 'uparrow';
+PrevButton = ignore('uparrow');
 pause(2)
 Delay = 0;
 ii = '';
@@ -99,16 +99,16 @@ while ~strcmp('game over',ii)
     end;
 %     disp(NextButton)
     switch NextButton
-        case 'numpad8'
+        case 'uparrow'
             Snake.Coordinate(2,1) = Snake.Coordinate(2,1) + 1;
 %             disp('8')
-        case 'numpad6'
+        case 'rightarrow'
             Snake.Coordinate(1,1) = Snake.Coordinate(1,1) + 1;
 %             disp('6')
-        case 'numpad2'
+        case 'downarrow'
             Snake.Coordinate(2,1) = Snake.Coordinate(2,1) - 1;
 %             disp('2')
-        case 'numpad4'
+        case 'leftarrow'
             Snake.Coordinate(1,1) = Snake.Coordinate(1,1) - 1;
 %             disp('4')
         otherwise
