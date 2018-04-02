@@ -1,29 +1,19 @@
-clear;
-% создание окна с заданными параметрами
+function create_win_img
+
 Figure = figure;
-Figure.Color = 'none'; %черный фон
+Figure.Color = 'none';
 Figure.DockControls = 'on';
 Figure.MenuBar = 'none';
 Figure.Name = 'Snake';
 Figure.NumberTitle = 'off';
 Figure.ToolBar = 'none';
 Figure.Clipping = 'off';
-% создание осей
 axes
 Axes = Figure.Children;
 Axes.Position = [0.003,0.005,0.993,0.989];
-% создание поля
-mymap = [0 0 0
-    1 0 0
-    0 1 0
-    0 0 1
-    1 1 1];
 Field = image(ones(25)*255);
 view(270,90)
-% colormap(mymap)
-% colormap colorcube;
 Field.CDataMapping = 'scaled';
-% настройки осей
 Figure.Children.YTickLabel = '';
 Figure.Children.XTickLabel = '';
 Axes.XLimMode = 'manual';
@@ -153,3 +143,4 @@ while ~strcmp('game over',ii)
 %     disp(strcat('ZTick',Figure.Children.ZTickLabel))
     Delay = toc;
 end;
+end
