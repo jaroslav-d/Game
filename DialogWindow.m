@@ -10,6 +10,7 @@ classdef DialogWindow < handle
         ChoiceOne
         Matrix = ones(1,3);
         CloseGame = '';
+        NewGame = '';
     end
     methods
         function Window = DialogWindow(Position,Number)
@@ -45,9 +46,7 @@ classdef DialogWindow < handle
                 Window.TextTwo.Parent = Window.Dialog;
                 Window.TextTwo.Position = [20 0 210 90];
                 Window.TextTwo.Style = 'text';
-                Window.TextTwo.String = {'Управление:','Влево - 4',...
-                                         'Вправо - 6','Вверх - 8',...
-                                         'Вниз - 2','Пауза - p или з'};
+                Window.TextTwo.String = {'Управление: стрелками','Пауза - P(Pause)'};
                 
                 Window.QuestionOne = uicontrol;
                 Window.QuestionOne.Parent = Window.Dialog;
@@ -87,6 +86,38 @@ classdef DialogWindow < handle
                 
                 function callback_two(obj,~)
                     Window.CloseGame = 'close';
+                    close(Window.Dialog)
+                end
+            end
+            
+            function ending
+                Window.TextOne = uicontrol;
+                Window.TextOne.Parent = Window.Dialog;
+                Window.TextOne.Position = [20 80 210 40];
+                Window.TextOne.Style = 'text';
+                Window.TextOne.String = 'Конец игры';
+                
+                Window.QuestionOne = uicontrol;
+                Window.QuestionOne.Parent = Window.Dialog;
+                Window.QuestionOne.Position = [17 20 90 25];
+                Window.QuestionOne.Style = 'pushbutton';
+                Window.QuestionOne.String = 'Начать заново';
+                Window.QuestionOne.Callback = @callback_three;
+                
+                Window.QuestionTwo = uicontrol;
+                Window.QuestionTwo.Parent = Window.Dialog;
+                Window.QuestionTwo.Position = [142 20 90 25];
+                Window.QuestionTwo.Style = 'pushbutton';
+                Window.QuestionTwo.String = 'Покинуть игру';
+                Window.QuestionTwo.Callback = @callback_two;
+                
+                function callback_two(obj,~)
+                    Window.CloseGame = 'close';
+                    close(Window.Dialog)
+                end
+                
+                function callback_three(obj,~)
+                    Window.NewGame = 'new';
                     close(Window.Dialog)
                 end
             end

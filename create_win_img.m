@@ -1,4 +1,4 @@
-clear;
+function create_win_img
 % создание окна с заданными параметрами
 Figure = figure;
 Figure.Color = 'none'; %черный фон
@@ -153,3 +153,14 @@ while ~strcmp('game over',ii)
 %     disp(strcat('ZTick',Figure.Children.ZTickLabel))
     Delay = toc;
 end;
+
+DW = DialogWindow(Figure.Position,3);
+if strcmp(DW.CloseGame,'close')
+    close(Figure);
+end;
+if strcmp(DW.NewGame,'new')
+    close(Figure);
+    create_win_img
+end;
+
+end
