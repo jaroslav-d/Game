@@ -154,13 +154,15 @@ while ~strcmp('game over',ii)
     Delay = toc;
 end;
 
-DW = DialogWindow(Figure.Position,3);
-if strcmp(DW.CloseGame,'close')
-    close(Figure);
-end;
-if strcmp(DW.NewGame,'new')
-    close(Figure);
-    create_win_img
+if ~strcmp(DW.CloseGame,'close')
+    DW = DialogWindow(Figure.Position,3);
+    if strcmp(DW.CloseGame,'close')
+        close(Figure);
+    end;
+    if strcmp(DW.NewGame,'new')
+        close(Figure);
+        create_win_img
+    end;
 end;
 
 end
